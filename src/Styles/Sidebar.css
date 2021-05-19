@@ -1,0 +1,72 @@
+.sidebar-container{
+    height: 90vh;
+    min-width: 400px;
+    border-left: 1px solid rgb(233, 213, 213);
+    border-bottom: 1px solid rgb(233, 213, 213);
+    background-color: white;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.sidebar-container .sidebar-header{
+    height: 53px;
+    width: 100%;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+}
+
+.sidebar-header .my-dp{
+    height: 45px;
+    width: 45px;
+    /* border: 1px solid rgba(0, 119, 255, 0.904); */
+    border-radius: 50%;
+    margin-left: 2.5%;
+    position: relative;
+}
+
+.my-dp img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    filter: brightness(1.45) contrast(1.15);
+}
+
+.sidebar-header .create-new-conversation{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+    width: 70px;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(51, 163, 185);
+    padding: 3%;
+    padding-top: 4.5%;
+    padding-bottom: 4.5%;
+    margin-right: 5%;
+    cursor: pointer;
+}
+
+.sidebar-container .search-conversations{
+    height: 53px;
+    width: 100%;
+    border-bottom: 1px solid rgb(228, 228, 228);
+    margin-bottom: 1.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 6px;
+}
+
+.search-conversations input[type='text'] {
+    text-align: center;
+    height: 55%;
+    width: 90%;
+    border: 1px solid rgb(177, 174, 174);
+    border-radius: 20px;
+    padding: 0.5%;
+}

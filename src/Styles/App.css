@@ -1,0 +1,20 @@
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
+.App{
+    display: flex;
+    width: 67%;
+    margin: 2% auto;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid rgb(230, 230, 230);
+}
