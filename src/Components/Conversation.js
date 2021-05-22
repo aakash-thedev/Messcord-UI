@@ -3,13 +3,13 @@ import '../Styles/ConversationItem.css';
 
 const Conversation = (props) => {
 
-    const { name, avatar, lastMessage } = props;
+    const { name, lastMessage } = props;
 
     return (
         <div className = "conversationItem">
             
             <span className="dp-wrapper">
-                <img src = {avatar} alt = "dp"></img>
+                {/* <img src = {avatar} alt = "dp"></img> */}
             </span>
 
             <span className="rightsection">

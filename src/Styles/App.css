@@ -13,8 +13,10 @@ html {
 
 .App{
     display: flex;
+    min-width: 700px;
     width: 67%;
     margin: 2% auto;
     font-family: 'Roboto', sans-serif;
-    border: 1px solid rgb(230, 230, 230);
+    border: 1px solid rgb(245, 245, 245);
+    position: relative;
 }

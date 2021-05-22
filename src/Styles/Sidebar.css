@@ -1,6 +1,7 @@
 .sidebar-container{
     height: 90vh;
-    min-width: 400px;
+    width: 30%;
+    /* min-width: 400px; */
     border-left: 1px solid rgb(233, 213, 213);
     border-bottom: 1px solid rgb(233, 213, 213);
     background-color: white;

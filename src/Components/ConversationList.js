@@ -1,39 +1,68 @@
 import Conversation from './Conversation';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import ChatBox from './ChatBox';
 
 const ConversationList = (props) => {
 
     const { conversations } = props;
-    console.log("CONVERSATION LIST", conversations);
 
     return (
-        
-        <div className = "conversation-wrapper">
+
+        <Router>
+
+            <div className = "conversation-wrapper">
 
             {
                 conversations.map((conversation) => {
 
                     // we are receiving each individual product from product array
 
-                    const { name, avatar, messages, lastMessage } = conversation;
+                    const { name, email, avatar, lastMessage } = conversation;
 
                     return (
 
-                        <Conversation
+                        <div key={conversation._id}>
+
+                            <Link to={'/' + conversation._id} style = {{textDecoration: 'none', color: 'black'}}>
+
+                            <Conversation
 
                             id = {conversation._id}
                             name = {name}
+                            email = {email}
                             avatar = {avatar}
-                            messages = {messages}
                             lastMessage = {lastMessage}
                             key = {conversation._id}
                             
-                        />
+
+                            />
+
+                            </Link>
+
+
+                            <Route path={'/' + conversation._id} render = {() => {
+
+                                return <ChatBox 
+                                
+                                    id = {conversation._id}
+                                    name = {name}
+                                    email = {email}
+                                    avatar = {avatar}
+                                    lastMessage = {lastMessage}
+                                    key = {conversation._id}
+                                    
+                                    />
+                                }}
+                            />
+
+                        </div>
                     );
                 })
             }
 
-        </div>
+            </div>
 
+        </Router>
     )
 }
 
