@@ -153,6 +153,7 @@
     margin-left: 1.3%;
     display: flex;
     flex-direction: column;
+    padding: 1%;
  }
 
  .input-messages{

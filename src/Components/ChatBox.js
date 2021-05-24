@@ -70,9 +70,12 @@ class ChatBox extends React.Component{
             newMessageObj.user_email = data.user_email;
             newMessageObj.username = data.username;
 
+            newMessageObj.sender = {_id: null};
+            newMessageObj.reciever = {name: self.props.name};
+
             // tooo : we have to set auth to access seperate message class property
             if(data.user_email === self.userEmail){
-                newMessageObj.self = true;
+                newMessageObj.sender._id = localStorage.getItem('id');
             }
             
             //push the message in message state
@@ -120,6 +123,8 @@ class ChatBox extends React.Component{
         const { messages } = this.state;
         const { name } = this.props;
 
+        console.log("%%%%%%%%%%%%%%%", messages);
+
         return (
 
             <main id="chatroot">
@@ -161,8 +166,8 @@ class ChatBox extends React.Component{
                                 return (
                                     <div className="message-wrapper" key={message.id}>
 
-                                        <div className = {message.self ? 'message self-message' : 'message other-message'} key={message}>
-                                            <small className="sender-id" key={message.id}>{ message.self ? '' : message.username }</small>
+                                        <div className = {message.sender._id == localStorage.getItem('id') ? 'message self-message' : 'message other-message'} key={message}>
+                                            <small className="sender-id" key={message.sender.id}> { message.sender._id === localStorage.getItem('id') ? '' : message.reciever.name } </small>
                                             <span className="message-content" key={message.id}>{ message.message }</span>
                                         </div>
                                     

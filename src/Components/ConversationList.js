@@ -1,6 +1,7 @@
 import Conversation from './Conversation';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import ChatBox from './ChatBox';
+import StarterDisplay from './StarterDisplay';
 
 const ConversationList = (props) => {
 
@@ -39,21 +40,24 @@ const ConversationList = (props) => {
 
                             </Link>
 
+                            <Switch>
 
-                            <Route path={'/' + conversation._id} render = {() => {
+                                <Route exact path={'/' + conversation._id} render = {() => {
 
-                                return <ChatBox 
-                                
-                                    id = {conversation._id}
-                                    name = {name}
-                                    email = {email}
-                                    avatar = {avatar}
-                                    lastMessage = {lastMessage}
-                                    key = {conversation._id}
-                                    
-                                    />
-                                }}
-                            />
+                                    return <ChatBox 
+
+                                        id = {conversation._id}
+                                        name = {name}
+                                        email = {email}
+                                        avatar = {avatar}
+                                        lastMessage = {lastMessage}
+                                        key = {conversation._id}
+                                        
+                                        />
+                                    }}
+                                />
+
+                            </Switch>
 
                         </div>
                     );
@@ -61,6 +65,14 @@ const ConversationList = (props) => {
             }
 
             </div>
+
+            {/* To Render Starter Display */}
+
+            <Route exact path='/' render = {() => {
+                    return <StarterDisplay />
+                }
+            }
+            />
 
         </Router>
     )
