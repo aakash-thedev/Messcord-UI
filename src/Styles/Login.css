@@ -2,42 +2,37 @@
 *:focus {
   outline: none; }
 
-#bg {
-  height: 100%;
-  float: none;
-  position: absolute;
-  top: 0;
-  left: 14%;
-  z-index: -1;
-  filter: brightness(1.2) contrast(1.4) blur(4px);
+#main-bg{
+  background: linear-gradient(135deg, white 70%, rgb(10, 88, 156) 30%);
 }
 
 #login-box {
   position: relative;
   margin: 10% auto;
-  width: 30%;
-  height: 38%;
+  width: 20%;
+  height: 20%;
   min-height: 350px;
   min-width: 500px;
   background: #FFF;
-  border-radius: 2px;
-  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4); }
+  border-radius: 16px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
+}
 
 .main {
   position: absolute;
-  top: 2;
-  left: 25;
   box-sizing: border-box;
-  padding: 40px;
-  width: 90%;
-  height: 100%; }
+  border-radius: 16px;
+  padding: 40px 40px 10px 40px;
+  width: 100%;
+  height: 100%;
+}
 
 h1 {
-  margin: auto;
   margin-bottom: 10%;
-  color: #0d3e69;
+  color: rgb(10, 88, 156);
   font-weight: 800;
-  font-size: 30px; }
+  font-size: 30px;
+}
 
 input[type="email"],
 input[type="password"] {
@@ -57,17 +52,18 @@ input[type="password"] {
 
 input[type="email"]:focus,
 input[type="password"]:focus {
-  border-bottom: 2px solid #16a085;
-  color: #16a085;
+  border-bottom: 2px solid rgb(10, 88, 156);
+  color: rgb(10, 88, 156);
   transition: 0.2s ease; }
 
 input[type="submit"] {
   margin: auto;
   margin-top: 7%;
-  width: 20%;
+  width: 100%;
   height: 40px;
   font-size: 15px;
-  background: #0d3e69;
+  /* background: #0d3e69; */
+  background-color: rgb(10, 88, 156);
   border: none;
   border-radius: 10px;
   color: #FFF;
@@ -75,7 +71,8 @@ input[type="submit"] {
   font-weight: 500;
   text-transform: uppercase;
   transition: 0.1s ease;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 input[type="submit"]:hover,
 input[type="submit"]:focus {
@@ -86,15 +83,5 @@ input[type="submit"]:focus {
 input[type="submit"]:active {
   opacity: 1;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-  transition: 0.1s ease; }
-
-#forget-password {
-  font-size: 14px;
-  position: absolute;
-  right: 1%;
-  bottom: 3%; }
-
-#forget-password > a {
-  text-decoration: none;
-  font-weight: 500;
-  color: #1481db; }
+  transition: 0.1s ease;
+}

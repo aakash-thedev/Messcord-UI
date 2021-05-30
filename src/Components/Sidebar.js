@@ -1,6 +1,12 @@
 import ConversationList from './ConversationList';
 import '../Styles/Sidebar.css';
 import React from 'react';
+import new_message from '../Assets/new-message.png';
+import more from '../Assets/more.png';
+import search from '../Assets/search.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'react-bootstrap';
+import ProfileModal from './ProfileModal';
 
 class Sidebar extends React.Component{
 
@@ -8,8 +14,15 @@ class Sidebar extends React.Component{
         super();
 
         this.state = {
-            conversations: []
+            conversations: [],
+            modalShow: false
         }
+    }
+
+    setModalShow = (status) => {
+        this.setState({
+            modalShow: status
+        })
     }
 
       // --------------------------- ComponentDidMount to detch users from database ------------------------------ //
@@ -46,17 +59,44 @@ class Sidebar extends React.Component{
                 <div className = "sidebar-header">
     
                     <span className="my-dp">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYjvQLZq2uGKf9RZcTUUiC6AbkgMjLddESVtJsIWcaw40M4sJ0U3zfhnJ46lGehNyo8Fg&usqp=CAU" alt="user-dp"></img>
+                        <img src={localStorage.getItem('avatar')} alt=""></img>
                     </span>
-    
-                    <button className="create-new-conversation">
-                        New <i className="fas fa-plus"></i>
-                    </button>
+
+                    <span id="utilities">
+
+                        <img src={new_message} title="New Conversation" alt="new-message"></img>
+
+                        <div id="menu-wrapper">
+
+                            <div className="dropdown">
+                                <a className="dropdown-toggle" href="www.google.com" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src={more} alt="more" title="More Settings"></img>
+                                </a>
+
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><Button className="dropdown-item" variant="primary" onClick={() => this.setModalShow(true)}>Profile</Button></li>
+                                    <li><a className="dropdown-item" href="www.google.com">Settings</a></li>
+                                    <li><a className="dropdown-item" href="www.google.com">Log out</a></li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                        
+
+                        <ProfileModal
+                            show={this.state.modalShow}
+                            onHide={() => this.setModalShow(false)}
+                        />
+                        
+                    </span>
     
                 </div>
     
                 <div className="search-conversations">
-                    <input type="text" placeholder="Search Conversations"></input>
+                    <input type="text" placeholder="Search Conversations..." />
+                    <img src={search} alt="search"></img>
                 </div>
     
                 <ConversationList conversations = {conversations}/>

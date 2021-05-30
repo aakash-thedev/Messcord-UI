@@ -2,6 +2,7 @@ import Conversation from './Conversation';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import ChatBox from './ChatBox';
 import StarterDisplay from './StarterDisplay';
+import io from 'socket.io-client';
 
 const ConversationList = (props) => {
 
@@ -35,7 +36,6 @@ const ConversationList = (props) => {
                             lastMessage = {lastMessage}
                             key = {conversation._id}
                             
-
                             />
 
                             </Link>
@@ -52,7 +52,8 @@ const ConversationList = (props) => {
                                         avatar = {avatar}
                                         lastMessage = {lastMessage}
                                         key = {conversation._id}
-                                        
+                                        socketConnection = { io.connect('http://localhost:8080', {transports: ['websocket'], polling: false}) }
+
                                         />
                                     }}
                                 />

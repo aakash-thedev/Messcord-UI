@@ -17,7 +17,7 @@ export default function Login(props){
     }
 
     return (
-        <div>
+        <div style={{overflow: 'hidden', height: '98vh'}} id="main-bg">
 
             <form method="POST" action="http://localhost:8000/api/v1/users/sign-in" onSubmit = {handleSubmit} autoComplete="off">
 

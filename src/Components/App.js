@@ -32,6 +32,7 @@ class App extends React.Component {
 
         localStorage.setItem('email', data.data.email);
         localStorage.setItem('username', data.data.name);
+        localStorage.setItem('avatar', data.data.avatar);
         localStorage.setItem('id', data.data.id);
         localStorage.setItem('jwt_token', data.data.token);
       }

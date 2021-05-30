@@ -1,7 +1,6 @@
 .sidebar-container{
     height: 90vh;
-    width: 30%;
-    /* min-width: 400px; */
+    width: 30.2%;
     border-left: 1px solid rgb(233, 213, 213);
     border-bottom: 1px solid rgb(233, 213, 213);
     background-color: white;
@@ -17,12 +16,13 @@
     align-items: center;
     justify-content: space-between;
     margin-top: 4px;
+    margin-bottom: 1%;
+    border-bottom: 1px solid rgb(235, 235, 235);
+    padding-bottom: 3%;
 }
 
 .sidebar-header .my-dp{
-    height: 45px;
-    width: 45px;
-    /* border: 1px solid rgba(0, 119, 255, 0.904); */
+    width: 35px;
     border-radius: 50%;
     margin-left: 2.5%;
     position: relative;
@@ -32,31 +32,44 @@
     height: 100%;
     width: 100%;
     border-radius: 50%;
-    filter: brightness(1.45) contrast(1.15);
+    image-rendering: crisp-edges;
+    /* filter: brightness(1.45) contrast(1.15); */
 }
 
-.sidebar-header .create-new-conversation{
+#utilities{
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    height: 30px;
-    width: 70px;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    background-color: rgb(51, 163, 185);
-    padding: 3%;
-    padding-top: 4.5%;
-    padding-bottom: 4.5%;
-    margin-right: 5%;
+    align-items: center;
+    height: auto;
+    width: 60px;
+    margin-right: 4%;
+}
+
+#utilities img{
+    height: 20px;
     cursor: pointer;
+    image-rendering: pixelated;
+}
+#menu-wrapper{
+    position: relative;
+}
+
+.dropdown > .dropdown-toggle > img{
+    height: 20px !important;
+    transform: rotate(90deg);
+}
+
+.dropdown-toggle::after{
+    display: none !important;
+}
+
+.dropdown-menu{
+    min-height: 100px;
 }
 
 .sidebar-container .search-conversations{
     height: 53px;
     width: 100%;
-    border-bottom: 1px solid rgb(228, 228, 228);
-    margin-bottom: 1.5%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,10 +77,20 @@
 }
 
 .search-conversations input[type='text'] {
-    text-align: center;
-    height: 55%;
-    width: 90%;
-    border: 1px solid rgb(177, 174, 174);
-    border-radius: 20px;
-    padding: 0.5%;
+    position: relative;
+    height: 58%;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgb(200, 200, 200);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 5%;
+    padding-left: 11%;
+}
+
+.search-conversations img{
+    height: 18px;
+    position: absolute;
+    left: 1%;
+    image-rendering: pixelated;
 }

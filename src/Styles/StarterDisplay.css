@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+
 #display-root{
     position: absolute;
     right: 0;
@@ -8,10 +10,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background: url('../Assets/qwd83nc4xxf41.jpg'); */
+    background-color: white;
+    background: url('../Assets/abstract-paper-hexagon-white-background_51543-7.jpg');
     background-position: bottom;
     background-size: contain;
-    background-color: white;
 }
 
 #heading-section{
@@ -22,9 +24,9 @@
 }
 
 #heading-section #heading-text{
-    font-size: 105px;
-    /* font-size: 6rem; */
+    font-size: 6vw;
     color: rgb(98,177,246);
+    font-family: 'Parisienne', cursive;
 }
 
 #features-text{
@@ -42,4 +44,8 @@
 #features-text .ft{
     color: grey;
     font-size: 17px;
+}
+
+#logo-section img{
+    width: 18vw;
 }

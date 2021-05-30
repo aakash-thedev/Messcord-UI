@@ -8,17 +8,17 @@ export default function StarterDisplay() {
             <div id="heading-section">
 
                 <span id="heading-text">Messcord</span>
-                <span id="features-text">
+                {/* <span id="features-text">
 
                     <i className="fas fa-circle"></i>
                         <span className="ft">Fast</span>
                     <i className="fas fa-circle"></i>
                         <span className="ft">Reliable</span>
-                    <i classname="fas fa-circle"></i>
+                    <i className="fas fa-circle"></i>
                         <span className="ft">Secure</span>
                     <i className="fas fa-circle"></i>
 
-                </span>
+                </span> */}
 
             </div>
 

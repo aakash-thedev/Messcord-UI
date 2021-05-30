@@ -1,5 +1,5 @@
 import React from 'react';
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 import '../Styles/Chatbox.css';
 
 class ChatBox extends React.Component{
@@ -13,7 +13,7 @@ class ChatBox extends React.Component{
         };
 
         // make a connection just like i did in nodejs
-        this.socket = io.connect('http://localhost:8080', {transports: ['websocket'], polling: false});
+        this.socket = props.socketConnection;
         // TODO : Set up authentication via API and set userSession
         this.userEmail = localStorage.getItem('email');
 
@@ -22,21 +22,22 @@ class ChatBox extends React.Component{
         }
     }
 
+    scrollToBottom = () => {
+        document.getElementById('chat-screen').scrollTo(0, document.getElementById('chat-screen').scrollHeight);
+    }
+
     componentDidMount(){
 
         fetch(`http://localhost:8000/api/v1/message/getMessages/?recieversID=${this.props.id}&sendersID=${localStorage.getItem('id')}&sendersEmail=${localStorage.getItem('email')}`, {
-            method: 'GET'
+        method: 'GET'
+        })
+        .then(res => res.json())
+        .then(data => {
+
+            this.setState({
+                messages: data.data.messages
             })
-            .then(res => res.json())
-            .then(data => {
-
-                console.log(data.data.messages);
-
-                this.setState({
-                    messages: data.data.messages
-                })
-            })
-
+        });
     }
 
     // --------------------- set up the connection with Observer ------------//
@@ -48,14 +49,14 @@ class ChatBox extends React.Component{
         self.socket.on('connect', () => {
 
             // lets commit our 'join_room' request
-            self.socket.emit('join_room', {
-                user_email: self.userEmail,
-                chatRoom: "chatroom1.0"
+            self.socket.emit('join_request', {
+                from: self.userEmail,
+                to: self.props.email
             });
 
             // now we will get some data from server
-            self.socket.on('user_joined', function(email){
-                // console.log(`${email} has joined chat with ${this.props.name}`);
+            self.socket.on('user_joined', function(data){
+                console.log(`${data.from} has joined chat with ${data.to}`);
             });
 
         });
@@ -67,14 +68,14 @@ class ChatBox extends React.Component{
             const newMessageObj = {};
 
             newMessageObj.message = data.message;
-            newMessageObj.user_email = data.user_email;
+            newMessageObj.user_email = data.from;
             newMessageObj.username = data.username;
 
             newMessageObj.sender = {_id: null};
-            newMessageObj.reciever = {name: self.props.name};
+            // newMessageObj.reciever = {name: data.to};
 
             // tooo : we have to set auth to access seperate message class property
-            if(data.user_email === self.userEmail){
+            if(data.from === self.userEmail){
                 newMessageObj.sender._id = localStorage.getItem('id');
             }
             
@@ -82,6 +83,8 @@ class ChatBox extends React.Component{
             self.setState({
                 messages: [...messages, newMessageObj]
             });
+
+            self.scrollToBottom();
         });
     }
 
@@ -96,35 +99,38 @@ class ChatBox extends React.Component{
         }
 
         this.socket.emit('send_message', {
-            user_email: this.userEmail,
-            endUser_email: this.props.email,
+            from: this.userEmail,
+            to: this.props.email,
             username: localStorage.getItem('username'),
-            message: messageContent,
-            chatRoom: "chatroom1.0"
+            message: messageContent
         });
 
         const formData = `&senders_id=${localStorage.getItem('id')}&message=${messageContent}&`;
 
         fetch(`http://localhost:8000/api/v1/message/create/${this.props.id}`, {
 
-            method: 'POST',
-            headers: {
-            'Content-type': 'application/x-www-form-urlencoded'
-            },
-            body: JSON.stringify(formData)
-            })
+        method: 'POST',
+        headers: {
+        'Content-type': 'application/x-www-form-urlencoded'
+        },
+        body: JSON.stringify(formData)
+        });
+
+        console.log(document.getElementById('chat-screen').getBoundingClientRect().height);
 
         document.getElementById('input-message').value = '';
+    }
+
+    componentDidUpdate = () => {
+        this.scrollToBottom();
     }
 
 
     render(){
 
         const { messages } = this.state;
-        const { name } = this.props;
-
-        console.log("%%%%%%%%%%%%%%%", messages);
-
+        const { name, avatar } = this.props;
+        
         return (
 
             <main id="chatroot">
@@ -134,7 +140,7 @@ class ChatBox extends React.Component{
                     <div className="chat-header">
 
                         <span id="chat-dp">
-                            <img src ="https://i.guim.co.uk/img/media/e746109cf7315dbb58c23d0b903e4d9c579bfb25/0_0_4096_2459/master/4096.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=3a2a090066c5bfc15c0571dc7261968f" alt="chat-dp"></img>
+                            <img src ={avatar} alt="chat-dp"></img>
                         </span>
 
                         <div id = "chat-right-section">
@@ -158,17 +164,18 @@ class ChatBox extends React.Component{
 
                     </div>
                     
-                    <div className = "chat-messages-screen">
+                    <div id="chat-screen" className = "chat-messages-screen" key={messages.length}>
 
                         {
                             messages.map((message) => {
 
                                 return (
-                                    <div className="message-wrapper" key={message.id}>
+                                    <div id="message" className="message-wrapper" key={message._id}>
 
-                                        <div className = {message.sender._id == localStorage.getItem('id') ? 'message self-message' : 'message other-message'} key={message}>
-                                            <small className="sender-id" key={message.sender.id}> { message.sender._id === localStorage.getItem('id') ? '' : message.reciever.name } </small>
+                                        <div className = {message.sender._id === localStorage.getItem('id') ? 'message self-message' : 'message other-message'} key={message._id}>
+                                            <small className="sender-id" key={message.sender.id}> { message.sender._id === localStorage.getItem('id') ? '' : '' } </small>
                                             <span className="message-content" key={message.id}>{ message.message }</span>
+                                            <small className="message-time">{message.createdAt ? String(message.createdAt).substring(11, 16) : Date().getHours() % 12 || 12}</small>
                                         </div>
                                     
                                     </div>
