@@ -17,7 +17,7 @@ export default function Login(props){
     }
 
     return (
-        <div style={{overflow: 'hidden', height: '98vh'}} id="main-bg">
+        <div id="main-bg">
 
             <form method="POST" action="http://localhost:8000/api/v1/users/sign-in" onSubmit = {handleSubmit} autoComplete="off">
 
@@ -25,7 +25,7 @@ export default function Login(props){
                     <div className="main">
                         <h1>Sign in | Messcord</h1>
                         
-                        <input type="email" name="email" placeholder="Username" ref={nameRef} required />
+                        <input type="email" name="email" placeholder="Email" ref={nameRef} required />
                         <input type="password" name="password" placeholder="Password" ref={passwordRef} required />
                         
                         <input type="submit" value="Sign In" />

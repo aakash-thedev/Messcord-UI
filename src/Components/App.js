@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from './Sidebar';
-import Login from './Login';
+import UserSetup from './UserSetup';
 import '../Styles/App.css';
 
 class App extends React.Component {
@@ -54,7 +54,8 @@ class App extends React.Component {
     if(!jwt_token){
 
       return (
-        <Login loginUser = {this.loginUser} />
+        // <Login loginUser = {this.loginUser} />
+        <UserSetup loginUser = {this.loginUser} />
       );
 
     }

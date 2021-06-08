@@ -3,15 +3,16 @@ import { Modal } from 'react-bootstrap';
 import '../Styles/ProfileModal.css';
 import update_image from '../Assets/plus.svg';
 import { useState } from 'react';
+import { Spinner } from 'react-bootstrap';
+import 'antd/dist/antd.css';
 
 export default function ProfileModal(props) {
 
-  var [avatar, setAvatar] = useState('');
-  // var [avatarURL, setAvatarURL] = useState(localStorage.getItem('avatar'));
   var avatarURL = localStorage.getItem('avatar');
+  var [recivedURL, setRecivedURL] = useState(null);
 
 
-  async function getImageURL_cloudnary(){
+  async function getImageURL_cloudnary(avatar){
 
     const data = new FormData();
     data.append('file' ,avatar);
@@ -26,6 +27,7 @@ export default function ProfileModal(props) {
     .then(data => {
       avatarURL = data.url;
       localStorage.setItem('avatar', data.url);
+      setRecivedURL("loaded");
       console.log(data.url);
     })
     .catch(err => console.log('#############', err));
@@ -36,7 +38,6 @@ export default function ProfileModal(props) {
 
     event.preventDefault();
 
-    await getImageURL_cloudnary();
     console.log("AVATAR URL", avatarURL);
 
     const formData = `&name=${document.getElementById('username').value}&email=${document.getElementById('email').value}&avatar=${avatarURL}&`
@@ -51,6 +52,7 @@ export default function ProfileModal(props) {
     .then(res => res.json())
     .then(data => {
       console.log(data.data.updatedUser);
+      props.onHide();
     })
     .catch(err => console.log(`@@@@${err}`));
 
@@ -58,7 +60,7 @@ export default function ProfileModal(props) {
 
   function previewPhoto(event){
 
-    setAvatar(event.target.files[0]);
+    setRecivedURL("loading");
 
     var input = document.getElementById('file-input');
 
@@ -75,6 +77,8 @@ export default function ProfileModal(props) {
       }
 
     }
+
+    getImageURL_cloudnary(event.target.files[0]);
 
   }
 
@@ -103,6 +107,8 @@ export default function ProfileModal(props) {
                 <input type="file" name="avatar" className="file-input" id="file-input" onChange = {(eventT) => previewPhoto(eventT)} />
                 <img src={update_image} alt="add" id="add"></img>
               </label>
+
+              { recivedURL === 'loading' ? <Spinner animation="border" id="loading-spinner"/> : null }
             </span>
 
           </div>
@@ -117,7 +123,7 @@ export default function ProfileModal(props) {
 
           </div>
 
-          <button type="submit" id="save">Save</button>
+          { recivedURL === 'loading' ? <button id="wait">Please Wait</button> : <button type="submit" id="save">Save</button> }
 
         </form>
 

@@ -74,3 +74,15 @@
     border-radius: 8px;
     float: right;
 }
+
+#wait{
+    margin-top: 6%;
+    background: transparent;
+    border: none;
+    height: 40px;
+    width: 100px;
+    background-color: rgb(255, 0, 85);
+    color: white;
+    border-radius: 8px;
+    float: right;
+}

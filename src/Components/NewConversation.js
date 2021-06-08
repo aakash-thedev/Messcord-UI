@@ -1,7 +1,7 @@
 import React from 'react'
 import '../Styles/ConversationItem.css';
 
-const Conversation = (props) => {
+const NewConversation = (props) => {
 
     const { name, avatar } = props;
 
@@ -16,17 +16,10 @@ const Conversation = (props) => {
 
                 <span className = "conversationItemName">{name}</span>
 
-                {/* TODO */}
-                <small className = "last-message">This was the last message</small>
-
-            </span>
-
-            <span className="time-section">
-                <small className="last-message-time">10:05</small>
             </span>
 
         </div>
     )
 }
 
-export default Conversation;
+export default NewConversation;

@@ -1,0 +1,114 @@
+#sign-up-main{
+    padding: 2%;
+    width: 35%;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(50, 50, 93, 0.35) 0px 1px 4px -1px, rgba(0, 0, 0, 0.6) 0px 1px 3px -1px;
+}
+
+#sign-up-main > form {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    background-color: white;
+}
+
+#input-dp-wrapper{
+    height: 120px;
+    width: 120px;
+    background-color: rgb(165, 162, 162);
+    border-radius: 50%;
+    align-self: center;
+    position: relative;
+}
+
+#input-dp-wrapper > label{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#input-dp-wrapper > label:hover{
+    opacity: 0.7;
+}
+
+#input-dp-wrapper > label input[type='file']{
+    display: none;
+}
+
+#input-dp-wrapper > label #my-dp-preview{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+
+#upload-icon{
+    position: absolute;
+    z-index: 99;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+}
+
+#upload-icon:hover{
+    height: 30%;
+    width: 30%;
+    opacity: 1;
+}
+
+#sign-up-main label{
+    /* color: rgb(10,88,156); */
+    font-weight: 400;
+}
+
+#sign-up-main input{
+    border: none;
+    border-bottom: 1px solid rgb(212, 212, 212);
+    height: 28px;
+    margin-bottom: 4%;
+    font-size: 15px;
+}
+
+
+.sign-up-btn{
+    height: 40px;
+    width: 120px;
+    color: white;
+    background-color: rgb(10, 156, 156);
+    border: none;
+    border-radius: 8px;
+    margin-top: 4%;
+}
+
+.sign-up-btn:hover{
+    background-color: rgb(9, 199, 199);
+}
+
+.disableButton{
+    height: 40px;
+    width: 120px;
+    color: white;
+    background-color: rgb(71, 71, 71);
+    cursor: not-allowed;
+    border: none;
+    border-radius: 8px;
+    margin-top: 4%;
+}
+
+/* ---------------------Loading Spinner CSS ------------------ */
+#loading-spinner{
+    position: absolute;
+    height: 40%;
+    width: 40%;
+    right:  32%;
+    top: 32%;
+    filter: invert();
+}

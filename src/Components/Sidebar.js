@@ -7,6 +7,7 @@ import search from '../Assets/search.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import ProfileModal from './ProfileModal';
+import NewConversationModal from './NewConversationModal';
 
 class Sidebar extends React.Component{
 
@@ -15,13 +16,20 @@ class Sidebar extends React.Component{
 
         this.state = {
             conversations: [],
-            modalShow: false
+            modalShow: false,
+            newConversationModalShow: false
         }
     }
 
     setModalShow = (status) => {
         this.setState({
             modalShow: status
+        })
+    }
+
+    setNewConversationModalShow = (status) => {
+        this.setState({
+            newConversationModalShow: status
         })
     }
 
@@ -49,6 +57,12 @@ class Sidebar extends React.Component{
         })
     }
 
+    logout = () => {
+        localStorage.removeItem('jwt_token');
+        // to auto refresh the page !!
+        window.location.reload(false);
+    }
+
     render(){
 
         const { conversations } = this.state;
@@ -64,7 +78,7 @@ class Sidebar extends React.Component{
 
                     <span id="utilities">
 
-                        <img src={new_message} title="New Conversation" alt="new-message"></img>
+                        <img src={new_message} title="New Conversation" alt="new-message" onClick={() => this.setNewConversationModalShow(true)}></img>
 
                         <div id="menu-wrapper">
 
@@ -76,7 +90,7 @@ class Sidebar extends React.Component{
                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li><Button className="dropdown-item" variant="primary" onClick={() => this.setModalShow(true)}>Profile</Button></li>
                                     <li><a className="dropdown-item" href="www.google.com">Settings</a></li>
-                                    <li><a className="dropdown-item" href="www.google.com">Log out</a></li>
+                                    <li><span className="dropdown-item" onClick={this.logout}>Log out</span></li>
                                 </ul>
 
                             </div>
@@ -88,6 +102,11 @@ class Sidebar extends React.Component{
                         <ProfileModal
                             show={this.state.modalShow}
                             onHide={() => this.setModalShow(false)}
+                        />
+
+                        <NewConversationModal
+                            show={this.state.newConversationModalShow}
+                            onHide={() => this.setNewConversationModalShow(false)}
                         />
                         
                     </span>

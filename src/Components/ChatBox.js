@@ -69,6 +69,7 @@ class ChatBox extends React.Component{
 
             newMessageObj.message = data.message;
             newMessageObj.user_email = data.from;
+            newMessageObj.enduser_email = data.to;
             newMessageObj.username = data.username;
 
             newMessageObj.sender = {_id: null};
@@ -79,10 +80,12 @@ class ChatBox extends React.Component{
                 newMessageObj.sender._id = localStorage.getItem('id');
             }
             
-            //push the message in message state
-            self.setState({
-                messages: [...messages, newMessageObj]
-            });
+            // push the message in message state || only to the person you are talking to
+            if(self.props.email === newMessageObj.enduser_email){
+                self.setState({
+                    messages: [...messages, newMessageObj]
+                });
+            }
 
             self.scrollToBottom();
         });
@@ -175,7 +178,6 @@ class ChatBox extends React.Component{
                                         <div className = {message.sender._id === localStorage.getItem('id') ? 'message self-message' : 'message other-message'} key={message._id}>
                                             <small className="sender-id" key={message.sender.id}> { message.sender._id === localStorage.getItem('id') ? '' : '' } </small>
                                             <span className="message-content" key={message.id}>{ message.message }</span>
-                                            <small className="message-time">{message.createdAt ? String(message.createdAt).substring(11, 16) : Date().getHours() % 12 || 12}</small>
                                         </div>
                                     
                                     </div>

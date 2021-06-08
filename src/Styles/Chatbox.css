@@ -12,9 +12,6 @@
 .chatbox-screen{
     height: 90vh;
     width: 100%;
-    border-bottom: 1px solid rgb(212, 205, 205);
-    border-right: 1px solid rgb(212, 205, 205);
-    border-left: 1px solid rgb(212, 205, 205);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -118,13 +115,6 @@
     position: relative;
  }
 
-.message-time{
-    font-size: 10px;
-    position: absolute;
-    bottom: 0.4%;
-    right: 1.5%;
-}
-
  .self-message{
     height: auto;
     width: auto;
@@ -136,10 +126,7 @@
     border-bottom-left-radius: 12px;
     margin-left: auto;
     margin-right: 1.5%;
-    padding-left: 1%;
-    padding-top: 1%;
-    padding-right: 1%;
-    padding-bottom: 2%;
+    padding: 1%;
  }
 
  .other-message{
@@ -150,14 +137,11 @@
     color: black;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
-    border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 12px;
     margin-left: 1.3%;
     display: flex;
     flex-direction: column;
-    padding-left: 1%;
-    padding-top: 1%;
-    padding-right: 1%;
-    padding-bottom: 2%;
+    padding: 1%;
  }
 
  .other-message .message-time{

@@ -1,0 +1,63 @@
+#user-setup-div{
+    height: 57vh;
+    width: 1350px;
+    margin: 8% auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    position: relative;
+
+}
+
+#brand-logo{
+    position: fixed;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    top: 2%;
+    background-color: white;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+#brand-logo > img{
+    height: 80px;
+    image-rendering: pixelated;
+}
+
+#brand-logo{
+    font-size: 36px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    color: rgb(98,177,246);
+}
+
+#bg1{
+    position: absolute;
+    height: 300px;
+    bottom: -45%;
+    right: -18%;
+    image-rendering: pixelated;
+    filter: hue-rotate(301deg);
+}
+
+#bg2{
+    position: absolute;
+    height: 200px;
+    left: -20%;
+    image-rendering: pixelated;
+    filter: hue-rotate(301deg);
+}
+
+#divider{
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    font-size: 22px;
+    color: grey;
+    border: 1px solid rgb(218, 218, 218);
+}
